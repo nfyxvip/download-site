@@ -133,9 +133,10 @@ a:hover { text-decoration: underline; }
 /* 底部 */
 .foot { padding: 12px 16px; color: #aaa; font-size: 12px; text-align: center; border-top: 1px solid #f0e8f7; }
 
-/* 免责声明（footer 上方） */
+/* 底部区：免责声明 + footer 一起贴底 */
+.page-bottom { margin-top: auto; }
 .disclaimer {
-    width: 96%; max-width: 1600px; margin: 0 auto 16px; padding: 12px 18px;
+    width: 96%; max-width: 1600px; margin: 0 auto 12px; padding: 12px 18px;
     background: #fff; border: 1px solid #ece5f3; border-radius: 8px;
     color: #999; font-size: 12px; line-height: 1.7; text-align: center;
 }
@@ -144,7 +145,7 @@ a:hover { text-decoration: underline; }
 /* 页面底部 footer（整页最下方，通栏） */
 .page-footer {
     background: #8e44ad; color: rgba(255,255,255,0.85);
-    margin-top: auto; font-size: 13px;
+    font-size: 13px;
 }
 .page-footer-inner {
     width: 96%; max-width: 1600px; margin: 0 auto; padding: 14px 18px;

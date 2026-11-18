@@ -437,6 +437,7 @@ $cur_url_attr = htmlspecialchars($cur_url, ENT_QUOTES);
     </aside>
 </div>
 
+<div class="page-bottom">
 <div class="disclaimer">
     <strong>免责声明：</strong>本站分享的文件均收集自互联网，仅供学习与测试使用，请在下载后 24 小时内删除，不得用于商业用途。如有侵权，请联系站长删除。本站不保证文件的完整性与安全性，下载前请自行检测。
 </div>
@@ -450,6 +451,7 @@ $cur_url_attr = htmlspecialchars($cur_url, ENT_QUOTES);
         <span><a href="<?= $self ?>">首页</a> · <a href="admin.php">后台管理</a></span>
     </div>
 </footer>
+</div>
 
 <?php if ($view_rel !== ''): ?>
 <div class="lightbox" onclick="location.href='<?= $self ?>?dir=<?= urlencode($dir_rel) ?>'">
