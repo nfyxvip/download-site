@@ -17,37 +17,44 @@ a:hover { text-decoration: underline; }
 /* 顶栏：紫罗兰到品红渐变 */
 .topbar { background: linear-gradient(90deg, #9b59b6, #e84393); }
 .topbar-inner {
-    max-width: 1280px; margin: 0 auto; padding: 12px 18px;
+    width: 96%; max-width: 1600px; margin: 0 auto; padding: 14px 18px;
     display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
 }
-.brand { font-size: 24px; font-weight: 700; color: #fff; font-family: "Songti SC", "SimSun", serif; letter-spacing: 1px; white-space: nowrap; }
+.brand { font-size: 26px; font-weight: 700; color: #fff; font-family: "Songti SC", "SimSun", serif; letter-spacing: 1px; white-space: nowrap; }
 .meta { color: rgba(255,255,255,0.85); font-size: 13px; }
 .top-search { margin-left: auto; }
 .top-search input {
-    padding: 8px 12px; font-size: 14px; width: 220px;
+    padding: 9px 14px; font-size: 14px; width: 260px;
     border: none; border-radius: 20px; outline: none;
     background: rgba(255,255,255,0.92); color: #333;
 }
 .top-search input::placeholder { color: #999; }
 
-/* 三栏布局：目录树 + 主列表 + 详情栏 */
+/* 三栏布局：目录树 + 主列表 + 详情栏（电脑端宽屏） */
 .layout {
-    max-width: 1280px; margin: 16px auto 24px; padding: 0 14px;
-    display: flex; gap: 16px; align-items: flex-start;
+    width: 96%; max-width: 1600px; margin: 20px auto 24px; padding: 0 14px;
+    display: flex; gap: 20px; align-items: flex-start;
 }
 .main {
     flex: 1; min-width: 0;
     background: #fff; border: 1px solid #e6d9f2; border-radius: 8px; overflow: hidden;
 }
+/* 手机端：单栏堆叠，目录树和详情栏都占满宽 */
 @media (max-width: 960px) {
-    .layout { flex-direction: column; }
-    .tree, .detail { width: 100% !important; }
-    .top-search input { width: 160px; }
+    .layout { flex-direction: column; width: 100%; padding: 0 8px; margin: 12px auto 16px; gap: 12px; }
+    .tree, .detail { width: 100% !important; position: static !important; max-height: none !important; }
+    .topbar-inner { width: 100%; padding: 10px 12px; gap: 10px; }
+    .brand { font-size: 20px; }
+    .meta { display: none; }
+    .top-search { margin-left: 0; width: 100%; }
+    .top-search input { width: 100%; }
+    .d-qr { display: none; } /* 手机上二维码没用，直接隐藏 */
+    .tree { max-height: 220px; }
 }
 
 /* 左侧目录树 */
 .tree {
-    width: 220px; flex-shrink: 0;
+    width: 260px; flex-shrink: 0;
     background: #f6eefb; border: 1px solid #e6d9f2; border-radius: 8px;
     padding: 10px 0 14px; max-height: calc(100vh - 120px);
     overflow-y: auto; position: sticky; top: 12px;
@@ -80,8 +87,8 @@ a:hover { text-decoration: underline; }
 .desc { padding: 12px 16px; background: #faf5fd; border-bottom: 1px solid #f0e8f7; color: #555; font-size: 14px; }
 
 /* 文件表格 */
-.ftable { width: 100%; border-collapse: collapse; font-size: 14px; }
-.ftable th, .ftable td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #f3eef7; }
+.ftable { width: 100%; border-collapse: collapse; font-size: 15px; }
+.ftable th, .ftable td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #f3eef7; }
 .ftable thead th { background: #faf5fd; color: #6c3483; font-size: 13px; white-space: nowrap; }
 .ftable thead th a { color: #6c3483; }
 .ftable thead th a:hover { color: #8e44ad; }
@@ -99,13 +106,16 @@ a:hover { text-decoration: underline; }
 .ftable .empty { padding: 28px; text-align: center; color: #999; }
 .lock-badge { color: #d63031; font-size: 13px; }
 @media (max-width: 640px) {
+    .ftable { font-size: 14px; }
+    .ftable th, .ftable td { padding: 12px 10px; }
     .ftable .c-time { display: none; }
     .ftable .c-size { width: 70px; }
+    .crumbs .root-link { display: none; }
 }
 
 /* 右侧详情栏 */
 .detail {
-    width: 240px; flex-shrink: 0;
+    width: 280px; flex-shrink: 0;
     background: #fff; border: 1px solid #e6d9f2; border-radius: 8px;
     overflow: hidden; position: sticky; top: 12px;
 }
@@ -129,7 +139,7 @@ a:hover { text-decoration: underline; }
     margin-top: auto; font-size: 13px;
 }
 .page-footer-inner {
-    max-width: 1280px; margin: 0 auto; padding: 14px 18px;
+    width: 96%; max-width: 1600px; margin: 0 auto; padding: 14px 18px;
     display: flex; justify-content: center; align-items: center; gap: 8px;
     flex-wrap: wrap; text-align: center;
 }
@@ -153,6 +163,15 @@ a:hover { text-decoration: underline; }
 }
 .lockbox button:hover { background: #7d3c98; }
 .lockbox .lock-tip { margin-top: 14px; font-size: 13px; }
+
+/* 超宽屏（大显示器）：字再大一点，间距再松一点 */
+@media (min-width: 1600px) {
+    body { font-size: 16px; }
+    .ftable { font-size: 16px; }
+    .ftable th, .ftable td { padding: 14px 16px; }
+    .tree { width: 300px; }
+    .detail { width: 320px; }
+}
 
 /* 图片预览浮层 */
 .lightbox {
