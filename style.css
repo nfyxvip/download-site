@@ -1,4 +1,4 @@
-/* 简易下载站样式（仿永硕E盘经典皮肤：紫色系，单栏简洁版） */
+/* 简易下载站样式（仿永硕E盘紫色系 + h5ai 三栏布局） */
 * { box-sizing: border-box; }
 body {
     margin: 0;
@@ -14,21 +14,52 @@ a:hover { text-decoration: underline; }
 /* 顶栏：紫罗兰到品红渐变 */
 .topbar { background: linear-gradient(90deg, #9b59b6, #e84393); }
 .topbar-inner {
-    max-width: 900px; margin: 0 auto; padding: 14px 18px;
-    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+    max-width: 1280px; margin: 0 auto; padding: 12px 18px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
 }
-.brand { font-size: 24px; font-weight: 700; color: #fff; font-family: "Songti SC", "SimSun", serif; letter-spacing: 1px; }
+.brand { font-size: 24px; font-weight: 700; color: #fff; font-family: "Songti SC", "SimSun", serif; letter-spacing: 1px; white-space: nowrap; }
 .meta { color: rgba(255,255,255,0.85); font-size: 13px; }
-.top-actions a { color: #fff; }
+.top-search { margin-left: auto; }
+.top-search input {
+    padding: 8px 12px; font-size: 14px; width: 220px;
+    border: none; border-radius: 20px; outline: none;
+    background: rgba(255,255,255,0.92); color: #333;
+}
+.top-search input::placeholder { color: #999; }
 
-/* 主体：单栏全宽 */
+/* 三栏布局：目录树 + 主列表 + 详情栏 */
+.layout {
+    max-width: 1280px; margin: 16px auto 40px; padding: 0 14px;
+    display: flex; gap: 16px; align-items: flex-start;
+}
 .main {
-    max-width: 900px; margin: 18px auto 40px; padding: 0;
+    flex: 1; min-width: 0;
     background: #fff; border: 1px solid #e6d9f2; border-radius: 8px; overflow: hidden;
 }
-@media (max-width: 940px) {
-    .main { margin-left: 10px; margin-right: 10px; }
+@media (max-width: 960px) {
+    .layout { flex-direction: column; }
+    .tree, .detail { width: 100% !important; }
+    .top-search input { width: 160px; }
 }
+
+/* 左侧目录树 */
+.tree {
+    width: 220px; flex-shrink: 0;
+    background: #f6eefb; border: 1px solid #e6d9f2; border-radius: 8px;
+    padding: 10px 0 14px; max-height: calc(100vh - 120px);
+    overflow-y: auto; position: sticky; top: 12px;
+}
+.tree-head { padding: 4px 14px 8px; font-weight: 700; color: #6c3483; border-bottom: 1px solid #e6d9f2; }
+.tree-root a, .tree ul a {
+    display: block; padding: 5px 14px; color: #333;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.tree-root a:hover, .tree ul a:hover { background: #efe6f7; text-decoration: none; }
+.tree-root a.cur, .tree li.cur > a { background: #e8d5f5; color: #6c3483; font-weight: 700; }
+.tree li.anc > a { color: #6c3483; }
+.tree ul { list-style: none; margin: 0; padding: 0; }
+.tree ul ul { padding-left: 16px; }
+.tree li { margin: 0; }
 
 /* 目录列表通栏：深紫底白字 */
 .list-head {
@@ -45,35 +76,46 @@ a:hover { text-decoration: underline; }
 /* 目录说明 */
 .desc { padding: 12px 16px; background: #faf5fd; border-bottom: 1px solid #f0e8f7; color: #555; font-size: 14px; }
 
-/* 文件列表 */
-.list { padding: 4px 0; }
-.empty { padding: 28px; text-align: center; color: #999; }
-.row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 16px; border-bottom: 1px solid #f3eef7;
-    min-height: 36px;
+/* 文件表格 */
+.ftable { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ftable th, .ftable td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #f3eef7; }
+.ftable thead th { background: #faf5fd; color: #6c3483; font-size: 13px; white-space: nowrap; }
+.ftable thead th a { color: #6c3483; }
+.ftable thead th a:hover { color: #8e44ad; }
+.ftable .c-time { width: 150px; color: #888; white-space: nowrap; }
+.ftable .c-size { width: 90px; text-align: right; color: #888; white-space: nowrap; }
+.ftable .c-dl { width: 40px; text-align: center; }
+.ftable .c-dl a { color: #7b2fbe; font-size: 16px; }
+.ftable tbody tr.row { cursor: pointer; }
+.ftable tbody tr.row:hover { background: #f4f6fb; }
+.ftable tbody tr.row:hover .c-name a { color: #d63031; }
+.ftable tbody tr.row.sel { background: #f3e5f5; }
+.ftable .c-name { min-width: 0; }
+.ftable .c-name a { color: #222; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; max-width: 100%; vertical-align: bottom; }
+.ftable .icon { margin-right: 8px; font-size: 16px; }
+.ftable .empty { padding: 28px; text-align: center; color: #999; }
+.lock-badge { color: #d63031; font-size: 13px; }
+@media (max-width: 640px) {
+    .ftable .c-time { display: none; }
+    .ftable .c-size { width: 70px; }
 }
-.row:last-child { border-bottom: none; }
-.row.dir { cursor: pointer; }
-.row.dir:hover .name { color: #d63031; }
-.row.file:hover, .row.link:hover { background: #f4f6fb; }
-.row .icon { font-size: 19px; width: 26px; text-align: center; flex-shrink: 0; }
-.row .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #222; }
-a.row .name, .row a.name { color: #222; }
-.row a.name:hover { color: #7b2fbe; }
-.row .size { width: 76px; text-align: right; color: #888; font-size: 13px; flex-shrink: 0; }
-.row .time { width: 92px; text-align: right; color: #aaa; font-size: 13px; flex-shrink: 0; }
-.row .arrow { color: #bbb; font-size: 18px; }
-.row .dl {
-    width: 30px; height: 30px; line-height: 30px; text-align: center;
-    border-radius: 6px; color: #7b2fbe; flex-shrink: 0; font-size: 16px;
+
+/* 右侧详情栏 */
+.detail {
+    width: 240px; flex-shrink: 0;
+    background: #fff; border: 1px solid #e6d9f2; border-radius: 8px;
+    overflow: hidden; position: sticky; top: 12px;
 }
-.row .dl:hover { background: #f3e5f5; text-decoration: none; }
-.lock-badge { color: #d63031; font-size: 14px; flex-shrink: 0; }
-@media (max-width: 560px) {
-    .row .time { display: none; }
-    .row .size { width: 64px; }
-}
+.detail-head { background: #6c3483; color: #fff; font-weight: 700; padding: 10px 16px; font-size: 15px; }
+.detail-body { padding: 16px; text-align: center; }
+.d-icon { font-size: 44px; }
+.d-name { font-weight: 700; color: #222; margin: 8px 0; word-break: break-all; font-size: 14px; }
+.d-meta { color: #666; font-size: 13px; text-align: left; line-height: 1.7; word-break: break-all; }
+.d-qr { margin-top: 14px; }
+.d-qr img { border: 1px solid #eee; border-radius: 6px; }
+.d-qr-tip { color: #999; font-size: 12px; margin-top: 6px; }
+.d-url { margin-top: 12px; font-size: 13px; }
+.d-url a { color: #7b2fbe; word-break: break-all; }
 
 /* 底部 */
 .foot { padding: 12px 16px; color: #aaa; font-size: 12px; text-align: center; border-top: 1px solid #f0e8f7; }
