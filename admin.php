@@ -97,19 +97,20 @@ if (!$logged_in) {
 <link rel="stylesheet" href="style.css"></head>
 <body>
 <div class="topbar"><div class="topbar-inner"><div class="brand">🔐 后台登录</div></div></div>
-<main class="main" style="max-width:420px;margin:40px auto;padding:24px;">
-    <h3 style="margin-top:0;">请输入管理员密码</h3>
+<main class="login-card">
+    <div class="login-icon">🔐</div>
+    <h3>后台登录</h3>
+    <p class="login-sub">请输入管理员密码</p>
     <?php if (!$CONFIG_OK): ?>
-        <p style="color:#a50e0e;">还没有配置文件。请把 <code>config.example.php</code> 复制为数据目录下的 <code>config.php</code>（默认在网站目录同级的 <code>download-site-data/</code>），并在里面设置管理员密码（用 <code>password_hash()</code> 生成哈希）。</p>
+        <p style="color:#a50e0e; text-align:left;">还没有配置文件。请把 <code>config.example.php</code> 复制为数据目录下的 <code>config.php</code>（默认在网站目录同级的 <code>download-site-data/</code>），并在里面设置管理员密码（用 <code>password_hash()</code> 生成哈希）。</p>
     <?php endif; ?>
     <?php if ($flash): ?><p style="color:<?= $flash['ok'] ? 'green' : 'red' ?>;"><?= htmlspecialchars($flash['msg'], ENT_QUOTES) ?></p><?php endif; ?>
     <form method="post" action="admin.php">
         <input type="hidden" name="action" value="login">
-        <input type="password" name="password" placeholder="管理员密码" required autofocus
-               style="width:100%;padding:10px;font-size:15px;border:1px solid #ccc;border-radius:6px;">
-        <button type="submit" style="width:100%;margin-top:12px;padding:10px;font-size:15px;background:#8e44ad;color:#fff;border:none;border-radius:6px;cursor:pointer;">登录</button>
+        <input type="password" name="password" placeholder="管理员密码" required autofocus>
+        <button type="submit">登录</button>
     </form>
-    <p style="color:#888;font-size:13px;margin-top:16px;"><a href="./">← 回到前台</a></p>
+    <p class="login-back"><a href="./">← 回到前台</a></p>
 </main>
 </body></html>
     <?php

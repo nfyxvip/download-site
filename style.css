@@ -164,6 +164,25 @@ a:hover { text-decoration: underline; }
 .lockbox button:hover { background: #7d3c98; }
 .lockbox .lock-tip { margin-top: 14px; font-size: 13px; }
 
+/* 后台登录卡片：只按内容高度，不撑满整页 */
+.login-card {
+    width: 420px; max-width: calc(100% - 32px);
+    margin: 60px auto; padding: 32px 28px;
+    background: #fff; border: 1px solid #e6d9f2; border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(108, 52, 131, 0.12);
+    text-align: center;
+}
+.login-icon { font-size: 44px; }
+.login-card h3 { margin: 10px 0 4px; font-size: 20px; color: #6c3483; }
+.login-sub { color: #888; font-size: 14px; margin: 0 0 18px; }
+.login-card input[type=password] { width: 100%; padding: 12px; font-size: 15px; border: 1px solid #d5c6e8; border-radius: 8px; box-sizing: border-box; }
+.login-card input[type=password]:focus { outline: none; border-color: #8e44ad; box-shadow: 0 0 0 2px rgba(142,68,173,.15); }
+.login-card button { width: 100%; margin-top: 14px; padding: 12px; font-size: 16px; background: #8e44ad; color: #fff; border: none; border-radius: 8px; cursor: pointer; }
+.login-card button:hover { background: #7d3c98; }
+.login-back { color: #888; font-size: 13px; margin-top: 18px; margin-bottom: 0; }
+@media (max-width: 640px) {
+    .login-card { margin: 32px auto; padding: 24px 20px; }
+}
 /* 超宽屏（大显示器）：字再大一点，间距再松一点 */
 @media (min-width: 1600px) {
     body { font-size: 16px; }
