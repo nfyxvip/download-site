@@ -300,26 +300,48 @@ $flash = get_flash();
 <title>后台管理 - <?= htmlspecialchars($CFG['site_name'] ?? '我的下载站', ENT_QUOTES) ?></title>
 <link rel="stylesheet" href="style.css">
 <style>
-.admin-wrap { max-width: 1080px; margin: 18px auto; padding: 0 14px 40px; }
-.card { background:#fff; border:1px solid #e6d9f2; border-radius:8px; padding:16px; margin-bottom:14px; }
-.card h3 { margin:0 0 10px; font-size:16px; }
-.card label { display:block; font-size:13px; color:#666; margin:8px 0 4px; }
-.card input[type=text], .card input[type=password], .card textarea { width:100%; padding:9px; font-size:14px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box; }
+/* 后台样式：与前台同款紫色系，电脑端宽屏两栏、手机端单栏 */
+.admin-wrap { width:96%; max-width:1600px; margin:20px auto; padding:0 14px 40px; }
+.card { background:#fff; border:1px solid #e6d9f2; border-radius:8px; padding:18px; margin-bottom:16px; }
+.card h3 { margin:0 0 12px; font-size:17px; color:#6c3483; }
+.card label { display:block; font-size:13px; color:#666; margin:10px 0 4px; }
+.card input[type=text], .card input[type=password], .card textarea { width:100%; padding:10px; font-size:14px; border:1px solid #d5c6e8; border-radius:6px; box-sizing:border-box; }
+.card input[type=text]:focus, .card input[type=password]:focus, .card textarea:focus { outline:none; border-color:#8e44ad; box-shadow:0 0 0 2px rgba(142,68,173,.15); }
 .card textarea { min-height:90px; font-family:monospace; }
-.btn { display:inline-block; padding:8px 16px; background:#8e44ad; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:14px; }
+.btn { display:inline-block; padding:9px 18px; background:#8e44ad; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:14px; }
 .btn:hover { background:#7d3c98; }
 .btn.danger { background:#d93025; } .btn.danger:hover { background:#b3271e; }
-.btn.ghost { background:#f0f2f4; color:#333; } .btn.ghost:hover { background:#e2e6ea; }
-.flash { padding:10px 14px; border-radius:6px; margin-bottom:14px; font-size:14px; }
-.flash.ok { background:#e6f4ea; color:#137333; } .flash.err { background:#fce8e6; color:#a50e0e; }
-.arow { display:flex; align-items:center; gap:10px; padding:9px 4px; border-bottom:1px solid #f3eef7; font-size:14px; flex-wrap:wrap; }
+.btn.ghost { background:#f0e6f7; color:#6c3483; } .btn.ghost:hover { background:#e2d0f0; }
+.flash { padding:12px 16px; border-radius:8px; margin-bottom:16px; font-size:14px; }
+.flash.ok { background:#e6f4ea; color:#137333; border:1px solid #a8dab5; } .flash.err { background:#fce8e6; color:#a50e0e; border:1px solid #f5a9a2; }
+/* 文件列表：深紫通栏标题 + 表格式行 */
+.file-card { padding:0; overflow:hidden; }
+.file-card-head { background:#6c3483; color:#fff; font-weight:700; padding:12px 18px; font-size:16px; letter-spacing:1px; }
+.file-card-head a { color:#e8d5f5; }
+.file-card-body { padding:6px 18px 12px; }
+.arow { display:flex; align-items:center; gap:10px; padding:11px 4px; border-bottom:1px solid #f3eef7; font-size:14px; flex-wrap:wrap; }
 .arow:last-child { border-bottom:none; }
+.arow:hover { background:#faf5fd; }
 .arow .nm { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .arow .sz { color:#888; font-size:13px; width:80px; text-align:right; }
 .arow form { display:inline; }
-.arow input[type=text] { width:130px; padding:5px 7px; font-size:13px; border:1px solid #ccc; border-radius:5px; }
-.top-actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.arow input[type=text] { width:130px; padding:6px 8px; font-size:13px; border:1px solid #d5c6e8; border-radius:5px; }
+.top-actions { display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
 .top-actions a { color:#fff; font-size:14px; }
+/* 操作卡片：电脑端两栏、手机端单栏 */
+.admin-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+.admin-grid .card { margin-bottom:0; }
+@media (max-width: 960px) {
+    .admin-wrap { width:100%; padding:0 8px 32px; margin:12px auto; }
+    .admin-grid { grid-template-columns:1fr; }
+    .card { padding:14px; }
+    .arow .sz { display:none; }
+    .arow input[type=text] { width:110px; }
+    .top-actions { gap:10px; }
+}
+@media (min-width: 1600px) {
+    .card input[type=text], .card input[type=password], .card textarea { font-size:15px; }
+}
 </style>
 </head>
 <body>
@@ -335,13 +357,14 @@ $flash = get_flash();
 <div class="admin-wrap">
     <?php if ($flash): ?><div class="flash <?= $flash['ok'] ? 'ok' : 'err' ?>"><?= htmlspecialchars($flash['msg'], ENT_QUOTES) ?></div><?php endif; ?>
 
-    <div class="card">
-        <h3>📂 当前目录：
+    <div class="card file-card">
+        <div class="file-card-head">📂 当前目录：
             <?php foreach ($crumbs as $i => $c): ?>
                 <?php if ($i > 0): ?>/<?php endif; ?>
                 <a href="<?= $self ?>?dir=<?= urlencode($c['rel']) ?>"><?= htmlspecialchars($c['name'], ENT_QUOTES) ?></a>
             <?php endforeach; ?>
-        </h3>
+        </div>
+        <div class="file-card-body">
         <?php if (empty($entries)): ?><p style="color:#999;">这个目录是空的，先上传文件或新建文件夹。</p><?php endif; ?>
         <?php foreach ($entries as $e): ?>
             <div class="arow">
@@ -391,8 +414,10 @@ $flash = get_flash();
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
+        </div>
     </div>
 
+    <div class="admin-grid">
     <div class="card">
         <h3>⬆️ 上传文件到当前目录</h3>
         <form method="post" action="<?= $here ?>" enctype="multipart/form-data">
@@ -467,6 +492,7 @@ $flash = get_flash();
             <input type="password" name="new_pass2" required>
             <button class="btn" type="submit" style="margin-top:10px;">修改密码</button>
         </form>
+    </div>
     </div>
 </div>
 </body>
