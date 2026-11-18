@@ -7,6 +7,9 @@ body {
     color: #333;
     font-size: 15px;
     line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 a { color: #7b2fbe; text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -29,7 +32,7 @@ a:hover { text-decoration: underline; }
 
 /* 三栏布局：目录树 + 主列表 + 详情栏 */
 .layout {
-    max-width: 1280px; margin: 16px auto 40px; padding: 0 14px;
+    max-width: 1280px; margin: 16px auto 24px; padding: 0 14px;
     display: flex; gap: 16px; align-items: flex-start;
 }
 .main {
@@ -123,7 +126,7 @@ a:hover { text-decoration: underline; }
 /* 页面底部 footer（整页最下方，通栏） */
 .page-footer {
     background: #6c3483; color: rgba(255,255,255,0.85);
-    margin-top: 8px; font-size: 13px;
+    margin-top: auto; font-size: 13px;
 }
 .page-footer-inner {
     max-width: 1280px; margin: 0 auto; padding: 14px 18px;
