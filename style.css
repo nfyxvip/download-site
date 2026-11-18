@@ -130,14 +130,12 @@ a:hover { text-decoration: underline; }
 }
 .page-footer-inner {
     max-width: 1280px; margin: 0 auto; padding: 14px 18px;
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    text-align: center;
+    display: flex; justify-content: center; align-items: center; gap: 8px;
+    flex-wrap: wrap; text-align: center;
 }
 .page-footer a { color: #e8d5f5; }
 .page-footer a:hover { color: #fff; }
-@media (max-width: 640px) {
-    .pf-mid, .pf-right { margin-left: 0; }
-}
+.pf-sep { color: rgba(255,255,255,0.5); }
 
 /* 文件夹密码框 */
 .lockbox { max-width: 420px; margin: 48px auto; text-align: center; padding: 0 16px 32px; }

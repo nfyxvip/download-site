@@ -439,9 +439,11 @@ $cur_url_attr = htmlspecialchars($cur_url, ENT_QUOTES);
 
 <footer class="page-footer">
     <div class="page-footer-inner">
-        <div class="pf-left">© <?= date('Y') ?> <?= htmlspecialchars($SITE_NAME, ENT_QUOTES) ?> · 简易下载站</div>
-        <div class="pf-mid">共 <?= $total_count ?> 个文件 · 总计 <?= human_size($total_bytes) ?></div>
-        <div class="pf-right"><a href="<?= $self ?>">首页</a> · <a href="admin.php">后台管理</a></div>
+        <span>© <?= date('Y') ?> <?= htmlspecialchars($SITE_NAME, ENT_QUOTES) ?> · 简易下载站</span>
+        <span class="pf-sep">·</span>
+        <span>共 <?= $total_count ?> 个文件 · 总计 <?= human_size($total_bytes) ?></span>
+        <span class="pf-sep">·</span>
+        <span><a href="<?= $self ?>">首页</a> · <a href="admin.php">后台管理</a></span>
     </div>
 </footer>
 
