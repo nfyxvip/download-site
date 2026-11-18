@@ -437,6 +437,10 @@ $cur_url_attr = htmlspecialchars($cur_url, ENT_QUOTES);
     </aside>
 </div>
 
+<div class="disclaimer">
+    <strong>免责声明：</strong>本站分享的文件均收集自互联网，仅供学习与测试使用，请在下载后 24 小时内删除，不得用于商业用途。如有侵权，请联系站长删除。本站不保证文件的完整性与安全性，下载前请自行检测。
+</div>
+
 <footer class="page-footer">
     <div class="page-footer-inner">
         <span>© <?= date('Y') ?> <?= htmlspecialchars($SITE_NAME, ENT_QUOTES) ?> · 简易下载站</span>

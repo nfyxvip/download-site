@@ -3,7 +3,7 @@
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #f3eef7;
+    background: #faf9fc;
     color: #333;
     font-size: 15px;
     line-height: 1.5;
@@ -14,8 +14,8 @@ body {
 a { color: #7b2fbe; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* 顶栏：紫罗兰到品红渐变 */
-.topbar { background: linear-gradient(90deg, #9b59b6, #e84393); }
+/* 顶栏：浅紫到浅粉渐变（轻爽） */
+.topbar { background: linear-gradient(90deg, #a86cc1, #e88bb0); }
 .topbar-inner {
     width: 96%; max-width: 1600px; margin: 0 auto; padding: 14px 18px;
     display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
@@ -37,7 +37,7 @@ a:hover { text-decoration: underline; }
 }
 .main {
     flex: 1; min-width: 0;
-    background: #fff; border: 1px solid #e6d9f2; border-radius: 8px; overflow: hidden;
+    background: #fff; border: 1px solid #ece5f3; border-radius: 8px; overflow: hidden;
 }
 /* 手机端：单栏堆叠，目录树和详情栏都占满宽 */
 @media (max-width: 960px) {
@@ -55,25 +55,25 @@ a:hover { text-decoration: underline; }
 /* 左侧目录树 */
 .tree {
     width: 260px; flex-shrink: 0;
-    background: #f6eefb; border: 1px solid #e6d9f2; border-radius: 8px;
+    background: #fbf8fe; border: 1px solid #ece5f3; border-radius: 8px;
     padding: 10px 0 14px; max-height: calc(100vh - 120px);
     overflow-y: auto; position: sticky; top: 12px;
 }
-.tree-head { padding: 4px 14px 8px; font-weight: 700; color: #6c3483; border-bottom: 1px solid #e6d9f2; }
+.tree-head { padding: 4px 14px 8px; font-weight: 700; color: #8e44ad; border-bottom: 1px solid #ece5f3; }
 .tree-root a, .tree ul a {
     display: block; padding: 5px 14px; color: #333;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.tree-root a:hover, .tree ul a:hover { background: #efe6f7; text-decoration: none; }
-.tree-root a.cur, .tree li.cur > a { background: #e8d5f5; color: #6c3483; font-weight: 700; }
-.tree li.anc > a { color: #6c3483; }
+.tree-root a:hover, .tree ul a:hover { background: #f3eaf9; text-decoration: none; }
+.tree-root a.cur, .tree li.cur > a { background: #eee2f7; color: #8e44ad; font-weight: 700; }
+.tree li.anc > a { color: #8e44ad; }
 .tree ul { list-style: none; margin: 0; padding: 0; }
 .tree ul ul { padding-left: 16px; }
 .tree li { margin: 0; }
 
-/* 目录列表通栏：深紫底白字 */
+/* 目录列表通栏：中紫底白字（轻爽） */
 .list-head {
-    background: #6c3483; color: #fff; font-weight: 700;
+    background: #8e44ad; color: #fff; font-weight: 700;
     padding: 10px 16px; font-size: 15px; letter-spacing: 1px;
 }
 
@@ -88,9 +88,9 @@ a:hover { text-decoration: underline; }
 
 /* 文件表格 */
 .ftable { width: 100%; border-collapse: collapse; font-size: 15px; }
-.ftable th, .ftable td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #f3eef7; }
-.ftable thead th { background: #faf5fd; color: #6c3483; font-size: 13px; white-space: nowrap; }
-.ftable thead th a { color: #6c3483; }
+.ftable th, .ftable td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #f6f2fa; }
+.ftable thead th { background: #faf5fd; color: #8e44ad; font-size: 13px; white-space: nowrap; }
+.ftable thead th a { color: #8e44ad; }
 .ftable thead th a:hover { color: #8e44ad; }
 .ftable .c-time { width: 150px; color: #888; white-space: nowrap; }
 .ftable .c-size { width: 90px; text-align: right; color: #888; white-space: nowrap; }
@@ -116,10 +116,10 @@ a:hover { text-decoration: underline; }
 /* 右侧详情栏 */
 .detail {
     width: 280px; flex-shrink: 0;
-    background: #fff; border: 1px solid #e6d9f2; border-radius: 8px;
+    background: #fff; border: 1px solid #ece5f3; border-radius: 8px;
     overflow: hidden; position: sticky; top: 12px;
 }
-.detail-head { background: #6c3483; color: #fff; font-weight: 700; padding: 10px 16px; font-size: 15px; }
+.detail-head { background: #8e44ad; color: #fff; font-weight: 700; padding: 10px 16px; font-size: 15px; }
 .detail-body { padding: 16px; text-align: center; }
 .d-icon { font-size: 44px; }
 .d-name { font-weight: 700; color: #222; margin: 8px 0; word-break: break-all; font-size: 14px; }
@@ -133,9 +133,17 @@ a:hover { text-decoration: underline; }
 /* 底部 */
 .foot { padding: 12px 16px; color: #aaa; font-size: 12px; text-align: center; border-top: 1px solid #f0e8f7; }
 
+/* 免责声明（footer 上方） */
+.disclaimer {
+    width: 96%; max-width: 1600px; margin: 0 auto 16px; padding: 12px 18px;
+    background: #fff; border: 1px solid #ece5f3; border-radius: 8px;
+    color: #999; font-size: 12px; line-height: 1.7; text-align: center;
+}
+.disclaimer strong { color: #8e44ad; }
+
 /* 页面底部 footer（整页最下方，通栏） */
 .page-footer {
-    background: #6c3483; color: rgba(255,255,255,0.85);
+    background: #8e44ad; color: rgba(255,255,255,0.85);
     margin-top: auto; font-size: 13px;
 }
 .page-footer-inner {
@@ -150,7 +158,7 @@ a:hover { text-decoration: underline; }
 /* 文件夹密码框 */
 .lockbox { max-width: 420px; margin: 48px auto; text-align: center; padding: 0 16px 32px; }
 .lockbox .lock-icon { font-size: 44px; }
-.lockbox h3 { margin: 8px 0 4px; color: #6c3483; }
+.lockbox h3 { margin: 8px 0 4px; color: #8e44ad; }
 .lockbox p { color: #666; font-size: 14px; }
 .lockbox .lock-err { color: #d63031; }
 .lockbox input[type=password] {
@@ -168,12 +176,12 @@ a:hover { text-decoration: underline; }
 .login-card {
     width: 420px; max-width: calc(100% - 32px);
     margin: 60px auto; padding: 32px 28px;
-    background: #fff; border: 1px solid #e6d9f2; border-radius: 12px;
+    background: #fff; border: 1px solid #ece5f3; border-radius: 12px;
     box-shadow: 0 4px 24px rgba(108, 52, 131, 0.12);
     text-align: center;
 }
 .login-icon { font-size: 44px; }
-.login-card h3 { margin: 10px 0 4px; font-size: 20px; color: #6c3483; }
+.login-card h3 { margin: 10px 0 4px; font-size: 20px; color: #8e44ad; }
 .login-sub { color: #888; font-size: 14px; margin: 0 0 18px; }
 .login-card input[type=password] { width: 100%; padding: 12px; font-size: 15px; border: 1px solid #d5c6e8; border-radius: 8px; box-sizing: border-box; }
 .login-card input[type=password]:focus { outline: none; border-color: #8e44ad; box-shadow: 0 0 0 2px rgba(142,68,173,.15); }
