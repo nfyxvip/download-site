@@ -437,6 +437,14 @@ $cur_url_attr = htmlspecialchars($cur_url, ENT_QUOTES);
     </aside>
 </div>
 
+<footer class="page-footer">
+    <div class="page-footer-inner">
+        <div class="pf-left">© <?= date('Y') ?> <?= htmlspecialchars($SITE_NAME, ENT_QUOTES) ?> · 简易下载站</div>
+        <div class="pf-mid">共 <?= $total_count ?> 个文件 · 总计 <?= human_size($total_bytes) ?></div>
+        <div class="pf-right"><a href="<?= $self ?>">首页</a> · <a href="admin.php">后台管理</a></div>
+    </div>
+</footer>
+
 <?php if ($view_rel !== ''): ?>
 <div class="lightbox" onclick="location.href='<?= $self ?>?dir=<?= urlencode($dir_rel) ?>'">
     <img src="<?= $self ?>?img=<?= urlencode($view_rel) ?>" alt="<?= htmlspecialchars(basename($view_rel), ENT_QUOTES) ?>">

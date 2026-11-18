@@ -120,6 +120,24 @@ a:hover { text-decoration: underline; }
 /* 底部 */
 .foot { padding: 12px 16px; color: #aaa; font-size: 12px; text-align: center; border-top: 1px solid #f0e8f7; }
 
+/* 页面底部 footer（整页最下方，通栏） */
+.page-footer {
+    background: #6c3483; color: rgba(255,255,255,0.85);
+    margin-top: 8px; font-size: 13px;
+}
+.page-footer-inner {
+    max-width: 1280px; margin: 0 auto; padding: 14px 18px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.page-footer a { color: #e8d5f5; }
+.page-footer a:hover { color: #fff; }
+.pf-mid { margin-left: auto; }
+.pf-right { margin-left: auto; }
+.pf-mid + .pf-right { margin-left: 0; }
+@media (max-width: 640px) {
+    .pf-mid, .pf-right { margin-left: 0; }
+}
+
 /* 文件夹密码框 */
 .lockbox { max-width: 420px; margin: 48px auto; text-align: center; padding: 0 16px 32px; }
 .lockbox .lock-icon { font-size: 44px; }
